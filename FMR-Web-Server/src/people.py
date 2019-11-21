@@ -42,16 +42,16 @@ def create(person):
     lname = person.get("lname",None)
     fname = person.get("fname",None)
     #Checks if person exists
-    if lname not in PEOPLE and lname is not None:
-        PEOPLE[lname] = {
+    if lname and fname not in PEOPLE and lname and fname is not None:
+        PEOPLE[fname + lname] = {
         "lname":lname,
         "fname":fname,
         "timestamp":get_timestamp(),
         }
-        return make_response("{lname} has been successfully created".format(lname=lname),201)
+        return make_response("User has been successfully created",201)
     else:
         abort(
-            406, "This last name {lname} already exists".format(lname=lname)
+            406, "This name already exists"
         )
 def update(lname,person):
     #Does person exist
