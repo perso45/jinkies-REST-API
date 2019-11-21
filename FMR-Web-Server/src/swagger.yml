@@ -40,6 +40,8 @@ paths:
                            type: "string"
                         lname:
                            type: "string"
+                        bdate:
+                           type: "string"
                         timestamp:
                            type: "string"
       post:
@@ -62,6 +64,9 @@ paths:
                     lname:
                        type: string
                        description: Last name of person to create
+                    bdate:
+                       type: string
+                       description: Birthdate of person to create
          responses:
             201:
                description: Created person in list
@@ -87,6 +92,8 @@ paths:
                         type: string
                      lname:
                         type: string
+                     bdate:
+                        type: string
                      timestamp:
                         type: string
       put:
@@ -109,6 +116,8 @@ paths:
                     fname:
                        type: string
                     lname:
+                       type: string
+                    bdate:
                        type: string
          responses:
             200:
