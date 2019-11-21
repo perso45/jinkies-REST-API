@@ -1,0 +1,129 @@
+swagger: "2.0"
+info:
+   description: This Swagger file accompanies our server code
+   version: "0.0.1"
+   title: Swagger REST API
+consumes:
+   - "application/json"
+produces:
+   - "application/json"
+
+basePath: "/api"
+#Supported application paths
+paths:
+   /people:
+      get:
+         operationId: "people.read_all"
+         tags:
+            - "people"
+         summary: "The people data structure, supported by the web server"
+         description: "Read the list of people"
+         parameters:
+            - name: length
+              in: query
+              type: integer
+              description: Number of people retrieved
+              required: false
+            - name: offset
+              in: query
+              type: integer
+              description: Offset of list from where to start gathering people
+              required: false
+         responses:
+            200:
+               description: "Successful read people operation"
+               schema:
+                  type: "array"
+                  items:
+                     properties:
+                        fname:
+                           type: "string"
+                        lname:
+                           type: "string"
+                        timestamp:
+                           type: "string"
+      post:
+         operationId: people.create
+         tags:
+            - people
+         summary: Create person and add to list
+         description: Create person to add to list
+         parameters:
+            - name: person
+              in: body
+              description: Person to create
+              required: True
+              schema:
+                 type: object
+                 properties:
+                    fname:
+                       type: string
+                       description: First name of person to create
+                    lname:
+                       type: string
+                       description: Last name of person to create
+         responses:
+            201:
+               description: Created person in list
+   /people/{lname}:
+      get:
+         operationId: people.read_one
+         tags:
+            - people
+         summary: Read one person from list
+         description: Read one person from list
+         parameters:
+            - name: lname
+              in: path
+              description: Last name of person being retrieved from list
+              type: string
+              required: True
+         responses:
+            200:
+               description: Successfully read person from list
+               schema:
+                  properties:
+                     fname:
+                        type: string
+                     lname:
+                        type: string
+                     timestamp:
+                        type: string
+      put:
+         operationId: people.update
+         tags:
+            - people
+         summary: Update a person in the list
+         description: Update a person in the list
+         parameters:
+            - name: lname
+              in: path
+              description: Last name of the person to update in list
+              type: string
+              required: True
+            - name: person
+              in: body
+              schema:
+                 type: object
+                 properties:
+                    fname:
+                       type: string
+                    lname:
+                       type: string
+         responses:
+            200:
+               description: Successfully updated person in list
+      delete:
+         operationId: people.delete
+         tags:
+            - people
+         summary: Delete person from list
+         description: Delete person from list
+         parameters:
+            - name: lname
+              in: path
+              type: string
+              required: True
+         responses:
+            200:
+               description: Successfully deleted person from list
