@@ -69,10 +69,10 @@ def update(fname,lname,person):
             404, "Last name {lname} not found".format(lname=lname)
         )
 
-def delete(fname,lname):
+def delete(lname):
     #Does person exist
-    if lname and fname in PEOPLE:
-        del PEOPLE[fname + lname]
+    if lname in PEOPLE:
+        del PEOPLE[lname]
         return make_response(
             "{lname} successfully deleted".format(lname=lname),200
         )
