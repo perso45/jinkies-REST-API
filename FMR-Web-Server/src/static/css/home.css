@@ -69,6 +69,10 @@ td {
     text-align: center;
 }
 
+.moreInfo {
+   text-align: center;
+}
+
 .error {
     width: 50%;
     margin-left: auto;
